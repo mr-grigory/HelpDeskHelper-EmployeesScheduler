@@ -1,2 +1,2 @@
-# HelpDeskHelper-EmployeesSheduler
-The service for tracking employee shedules
+# HelpDeskHelper-EmployeesScheduler
+The service for tracking employee schedules
