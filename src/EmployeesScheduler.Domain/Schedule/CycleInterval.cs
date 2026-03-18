@@ -3,7 +3,9 @@ using MrGrigory.MyUtils;
 
 namespace EmployeesScheduler.Domain.Schedule;
 
-
+/// <summary>
+/// Отрезок времени в расписании
+/// </summary>
 public class CycleInterval
 {
     public TimeSpan OffsetFromCycleStart { get; }
