@@ -1,4 +1,5 @@
 using CSharpFunctionalExtensions;
+using EmployeesScheduler.Domain.Extensions;
 using MrGrigory.MyUtils;
 
 namespace EmployeesScheduler.Domain.Schedule;
