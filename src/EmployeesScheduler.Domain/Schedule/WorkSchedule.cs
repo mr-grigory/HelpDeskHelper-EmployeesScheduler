@@ -9,7 +9,7 @@ namespace EmployeesScheduler.Domain.Schedule;
 /// </summary>
 public class WorkSchedule
 {
-    private readonly List<CycleInterval> _intervals;
+    private readonly List<CycleInterval> _intervals = [];
 
     public Guid Id { get; }
     public Guid EmployeeId { get; private set; }
@@ -18,7 +18,11 @@ public class WorkSchedule
 
     public IReadOnlyCollection<CycleInterval> Intervals => _intervals;
 
-    
+    // EF Core
+    private WorkSchedule()
+    {
+    }
+
     private WorkSchedule(ICollection<CycleInterval> intervals, Guid employeeId, DateOnly startDate)
     {
         Id = Guid.NewGuid();

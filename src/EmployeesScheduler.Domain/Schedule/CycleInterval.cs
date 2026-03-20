@@ -12,8 +12,12 @@ public class CycleInterval
     public TimeSpan OffsetFromCycleStart { get; }
     public TimeSpan Duration { get; }
     public TimeSpan OffsetFromCycleFinish => OffsetFromCycleStart + Duration;
-
     public WorkState State { get; }
+
+    // EF Core
+    private CycleInterval()
+    {
+    }
 
     private  CycleInterval(TimeSpan offsetFromCycleStart, TimeSpan duration, WorkState state)
     {
