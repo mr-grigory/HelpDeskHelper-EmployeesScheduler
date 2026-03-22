@@ -1,10 +1,12 @@
 ﻿using CSharpFunctionalExtensions;
+using EmployeesScheduler.Domain.Schedule;
 using MrGrigory.MyUtils;
 
 namespace EmployeesScheduler.Domain.Employees;
 
 public class Employee
 {
+    
     public Guid Id { get; init; }
     public string FirstName { get; private set; } = string.Empty;
     public string LastName { get; private set; } = string.Empty;
@@ -34,6 +36,5 @@ public class Employee
         
         return new Employee(firstName, lastName);
     }
-    
-    
+
 }

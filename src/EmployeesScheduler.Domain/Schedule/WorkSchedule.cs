@@ -1,4 +1,3 @@
-using System.ComponentModel.DataAnnotations;
 using CSharpFunctionalExtensions;
 using MrGrigory.MyUtils;
 
@@ -9,21 +8,21 @@ namespace EmployeesScheduler.Domain.Schedule;
 /// </summary>
 public class WorkSchedule
 {
-    private readonly List<CycleInterval> _intervals = [];
+    private readonly List<ScheduleInterval> _intervals = [];
 
     public Guid Id { get; }
     public Guid EmployeeId { get; private set; }
     
     public DateTime StartDate { get; private set; }
 
-    public IReadOnlyCollection<CycleInterval> Intervals => _intervals;
+    public IReadOnlyCollection<ScheduleInterval> Intervals => _intervals;
 
     // EF Core
     private WorkSchedule()
     {
     }
 
-    private WorkSchedule(ICollection<CycleInterval> intervals, Guid employeeId, DateOnly startDate)
+    private WorkSchedule(ICollection<ScheduleInterval> intervals, Guid employeeId, DateOnly startDate)
     {
         Id = Guid.NewGuid();
         _intervals = intervals.ToList();
@@ -33,7 +32,7 @@ public class WorkSchedule
             DateTimeKind.Utc);
     }
     
-    private static Result<List<CycleInterval>, Error> ValidateIntervals(ICollection<CycleInterval> intervals)
+    private static Result<List<ScheduleInterval>, Error> ValidateIntervals(ICollection<ScheduleInterval> intervals)
     {
         if (intervals.Count == 0)
             return Error.Validation("WorkSchedule.Create", 
@@ -66,7 +65,7 @@ public class WorkSchedule
     /// <param name="employeeId">Id сотрудника</param>
     /// <param name="startDate">Дата начала действия графика в UTC</param>
     /// <returns></returns>
-    public static Result<WorkSchedule, Error> Create(ICollection<CycleInterval> intervals, Guid employeeId, DateOnly startDate)
+    public static Result<WorkSchedule, Error> Create(ICollection<ScheduleInterval> intervals, Guid employeeId, DateOnly startDate)
     {
         // intervals validation
         var intervalValidateResult = ValidateIntervals(intervals);
@@ -83,7 +82,7 @@ public class WorkSchedule
     /// </summary>
     /// <param name="newIntervals">Новое расписание сотрудника</param>
     /// <returns></returns>
-    public UnitResult<Error> ReplaceSchedule(ICollection<CycleInterval> newIntervals)
+    public UnitResult<Error> ReplaceSchedule(ICollection<ScheduleInterval> newIntervals)
     {
         //TODO Добавить логику, что бы обновить график можно было только не позже даты его начала (или до его начала)
         
