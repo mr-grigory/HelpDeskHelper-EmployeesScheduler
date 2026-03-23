@@ -5,9 +5,9 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace EmployeesScheduler.Infrastructure.Postgres.Configurations.Schedules;
 
-public class WorkScheduleConfiguration : IEntityTypeConfiguration<WorkSchedule>
+public class DefaultScheduleConfiguration : IEntityTypeConfiguration<DefaultSchedule>
 {
-    public void Configure(EntityTypeBuilder<WorkSchedule> builder)
+    public void Configure(EntityTypeBuilder<DefaultSchedule> builder)
     {
         builder.ToTable("work_schedules");
         

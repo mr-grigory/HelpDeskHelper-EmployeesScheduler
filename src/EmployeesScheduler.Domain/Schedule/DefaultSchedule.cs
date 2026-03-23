@@ -6,7 +6,7 @@ namespace EmployeesScheduler.Domain.Schedule;
 /// <summary>
 /// Дефолтный график сотрудника
 /// </summary>
-public class WorkSchedule
+public class DefaultSchedule
 {
     private readonly List<ScheduleInterval> _intervals = [];
 
@@ -18,11 +18,11 @@ public class WorkSchedule
     public IReadOnlyCollection<ScheduleInterval> Intervals => _intervals;
 
     // EF Core
-    private WorkSchedule()
+    private DefaultSchedule()
     {
     }
 
-    private WorkSchedule(ICollection<ScheduleInterval> intervals, Guid employeeId, DateOnly startDate)
+    private DefaultSchedule(ICollection<ScheduleInterval> intervals, Guid employeeId, DateOnly startDate)
     {
         Id = Guid.NewGuid();
         _intervals = intervals.ToList();
@@ -65,7 +65,7 @@ public class WorkSchedule
     /// <param name="employeeId">Id сотрудника</param>
     /// <param name="startDate">Дата начала действия графика в UTC</param>
     /// <returns></returns>
-    public static Result<WorkSchedule, Error> Create(ICollection<ScheduleInterval> intervals, Guid employeeId, DateOnly startDate)
+    public static Result<DefaultSchedule, Error> Create(ICollection<ScheduleInterval> intervals, Guid employeeId, DateOnly startDate)
     {
         // intervals validation
         var intervalValidateResult = ValidateIntervals(intervals);
@@ -74,7 +74,7 @@ public class WorkSchedule
             return intervalValidateResult.Error;
         var validIntervals = intervalValidateResult.Value;
         
-        return new WorkSchedule(validIntervals, employeeId, startDate);
+        return new DefaultSchedule(validIntervals, employeeId, startDate);
     }
 
     /// <summary>

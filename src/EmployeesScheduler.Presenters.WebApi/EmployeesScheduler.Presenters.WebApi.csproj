@@ -13,6 +13,7 @@
     <ItemGroup>
       <ProjectReference Include="..\EmployeesScheduler.Domain\EmployeesScheduler.Domain.csproj" />
       <ProjectReference Include="..\EmployeesScheduler.Infrastructure.Postgres\EmployeesScheduler.Infrastructure.Postgres.csproj" />
+      <ProjectReference Include="..\EmployeesScheduler.Presenters\EmployeesScheduler.Presenters.csproj" />
     </ItemGroup>
 
 </Project>
