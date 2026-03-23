@@ -7,15 +7,19 @@ namespace EmployeesScheduler.Domain.Schedule;
 /// <summary>
 /// Отрезок времени в расписании
 /// </summary>
-public class CycleInterval
+public class ScheduleInterval
 {
     public TimeSpan OffsetFromCycleStart { get; }
     public TimeSpan Duration { get; }
     public TimeSpan OffsetFromCycleFinish => OffsetFromCycleStart + Duration;
-
     public WorkState State { get; }
 
-    private  CycleInterval(TimeSpan offsetFromCycleStart, TimeSpan duration, WorkState state)
+    // EF Core
+    private ScheduleInterval()
+    {
+    }
+
+    private  ScheduleInterval(TimeSpan offsetFromCycleStart, TimeSpan duration, WorkState state)
     {
         OffsetFromCycleStart = offsetFromCycleStart;
         Duration = duration;
@@ -29,7 +33,7 @@ public class CycleInterval
     /// <param name="duration">Продолжительность интервала</param>
     /// <param name="state">Поведение расписания в этот интервал времени</param>
     /// <returns></returns>
-    public static Result<CycleInterval, Error> Create(TimeSpan offsetFromCycleStart, TimeSpan duration, WorkState state)
+    public static Result<ScheduleInterval, Error> Create(TimeSpan offsetFromCycleStart, TimeSpan duration, WorkState state)
     {
         if (offsetFromCycleStart < TimeSpan.Zero)
         {
@@ -45,7 +49,7 @@ public class CycleInterval
                 "duration must be greater than to zero.");
         }
             
-        return new CycleInterval(offsetFromCycleStart, duration, state);
+        return new ScheduleInterval(offsetFromCycleStart, duration, state);
     }
 
     /// <summary>
@@ -63,7 +67,7 @@ public class CycleInterval
     /// </summary>
     /// <param name="otherInterval">Второй интервал, с которым проверить</param>
     /// <returns>true - если найдены пересечения, false - интервалы не пересекаются</returns>
-    public bool Intersects(CycleInterval otherInterval)
+    public bool Intersects(ScheduleInterval otherInterval)
     {
         return this.OffsetFromCycleStart < otherInterval.OffsetFromCycleFinish &&
                otherInterval.OffsetFromCycleStart < this.OffsetFromCycleFinish;

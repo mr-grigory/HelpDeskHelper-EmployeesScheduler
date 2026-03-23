@@ -1,5 +1,9 @@
 <Solution>
   <Folder Name="/src/">
+    <Project Path="src/EmployeesScheduler.Contracts/EmployeesScheduler.Contracts.csproj" />
     <Project Path="src/EmployeesScheduler.Domain/EmployeesScheduler.Domain.csproj" />
+    <Project Path="src/EmployeesScheduler.Infrastructure.Postgres/EmployeesScheduler.Infrastructure.Postgres.csproj" />
+    <Project Path="src/EmployeesScheduler.Presenters.WebApi/EmployeesScheduler.Presenters.WebApi.csproj" />
+    <Project Path="src/EmployeesScheduler.Presenters/EmployeesScheduler.Presenters.csproj" />
   </Folder>
 </Solution>
